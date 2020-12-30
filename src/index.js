@@ -1,17 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
+import store from './store'
+import App from './components/app'
+import ErrorBoundary from './components/errorBoundary'
+import BlogService from './services/blogService'
+import { BlogServiceProvider } from './components/blogServiceContext'
+import './index.css'
+
+const blogService = new BlogService()
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ErrorBoundary>
+      <BlogServiceProvider value={blogService}>
+        <Router>
+          <App />
+        </Router>
+      </BlogServiceProvider>
+    </ErrorBoundary>
+  </Provider>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
