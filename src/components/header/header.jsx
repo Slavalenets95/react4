@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import HeaderUI from '../headerUI'
 import classes from './header.module.scss'
 
 
@@ -7,23 +9,10 @@ const Header = () => {
 
     return (
         <header className={classes.header}>
-            <h1 className={[classes.logo, classes.header__logo]}>Realworld Blog</h1>
-            <ul className={classes.header__list}>
-                <li className={classes['header__list-item']}>
-                    <button className={[classes.header__btn]} 
-                            type='button'
-                    >
-                    Sign In
-                    </button>
-                </li>
-                <li className={classes['header__list-item']}>
-                    <button className={[classes.header__btn]} 
-                            type='button'
-                    >
-                    Sign Up
-                    </button>
-                </li>
-            </ul>
+            <Link className={[classes.logo]} to='/'>
+                <h1>Realworld Blog</h1>
+            </Link>
+            <HeaderUI />
         </header>
     )
 

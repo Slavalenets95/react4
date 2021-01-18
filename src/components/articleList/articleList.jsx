@@ -3,32 +3,40 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types';
 import { Pagination } from 'antd'
+import { useHistory, useParams } from 'react-router-dom'
 import Spinner from '../spinner'
 import ErrorIndicator from '../errorIndicator'
-import ArticleListItem from '../articleListItem'
-import withBlogService from '../hoc/withBlogService'
-import { fetchArticles, articlesPagination } from '../../actions/artciles'
+import Article from '../article'
+import { fetchArticles } from '../../actions/artciles'
 import 'antd/dist/antd.css';
 import classes from './articleList.module.scss'
 
-
-const ArticleList = ({ blogService, data, loading, err, pagination, fetchArticles, articlesPagination, }) => {
-
+const ArticleList = ({ data, loading, err, fetchArticles, }) => {
+    const history = useHistory()
+    const { page } = useParams()
     useEffect(() => {
-        fetchArticles(blogService, pagination)
-    }, [fetchArticles, pagination, blogService])
+        fetchArticles(page)
+    }, [fetchArticles, page ])
 
     if (loading) return <Spinner />
     if (err) return <ErrorIndicator />
 
-    const listItems = data.map(article => <ArticleListItem {...article} />)
+    const listItems = data.map(article => <li key={article.slug}> <Article article={article} /> </li>)
     return (
         <>
             <ul>
                 {listItems}
             </ul>
             <div className={classes.pagination_wrapper}>
-                <Pagination className={classes.pagination} defaultPageSize={5} pageSize={5} total={25} current={pagination / 5} onChange={(page, pageSize) => { articlesPagination(page, pageSize) }} />
+                <Pagination 
+                    className={classes.pagination} 
+                    defaultPageSize={5} 
+                    pageSize={5} 
+                    total={25} 
+                    current={+page} 
+                    onChange={(page) => {  
+                        history.push(`${page}`)
+                        }} />
             </div>
         </>
     )
@@ -36,23 +44,21 @@ const ArticleList = ({ blogService, data, loading, err, pagination, fetchArticle
 
 ArticleList.propTypes = {
     data: PropTypes.arrayOf(PropTypes.object).isRequired,
-    articlesPagination: PropTypes.func.isRequired,
+
 }
 
-const mapStateToProps = ({ articles: { data, loading, err, pagination, } }) => {
+const mapStateToProps = ({ articles: { data, loading, err } }) => {
     return {
         data,
         loading,
         err,
-        pagination,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         fetchArticles,
-        articlesPagination
     }, dispatch)
 }
 
-export default withBlogService(connect(mapStateToProps, mapDispatchToProps)(ArticleList))
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleList)

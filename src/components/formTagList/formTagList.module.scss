@@ -1,0 +1,39 @@
+.wrapper{
+    max-width: 600px;
+    margin-top: 21px;
+}
+.title{
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: rgba(38, 38, 38, 1);
+}
+.tag_list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.tag_checkbox {
+    display: none;
+}
+.tag_input {
+    width: 300px;
+    padding: 8px 12px;
+    border: 1px solid rgba(217, 217, 217, 1);
+    border-radius: 4px;
+    margin-top: 5px;
+}
+.delete_btn {
+    width: 120px;
+    border: 1px solid rgba(245, 34, 45, 1);
+    border-radius: 4px;
+    color: rgba(245, 34, 45, 1);
+    padding: 8px 12px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.add_btn {
+    width: 136px;
+    border: 1px solid rgba(24, 144, 255, 1);
+    border-radius: 4px;
+    color: rgba(24, 144, 255, 1);
+    padding: 8px 12px;
+}

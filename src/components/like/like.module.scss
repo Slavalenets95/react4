@@ -1,0 +1,31 @@
+.like_wrapper{
+    margin-left: 13px;
+    margin-right: auto;
+}
+.like_check{
+    display: none;
+}
+.like_label{
+    display: flex;
+}
+.like_label:hover{
+    cursor: pointer;
+}
+.like_check + .like_label::before {
+    content: '';
+    background-image: url('../../image/unliked.svg');
+    background-size: 16px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+.like_check:checked + .like_label::before{
+    content: '';
+    background-image: url('../../image/liked.svg');
+    background-size: 16px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}

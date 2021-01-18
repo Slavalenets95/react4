@@ -1,23 +1,33 @@
 import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import withBlogService from '../hoc/withBlogService' 
+import Spinner from '../spinner'
+import ErrorIndicator from '../errorIndicator'
 import { fetchArticle } from '../../actions/article'
+import Article from '../article'
 
-const ArticlePage = ({article, slug, blogService, fetchArticle}) => {
+const ArticlePage = ({article, loading, err, fetchArticle}) => {
+    const { slug } = useParams()
+    
     useEffect(() => {
-        fetchArticle(blogService, slug)
-    }, [blogService, fetchArticle, slug])
-    console.log(article)
+        fetchArticle(slug)
+    }, [fetchArticle, slug])
+
+    if(loading) return <Spinner />
+    if(err) return <ErrorIndicator />
+
     return (
-        <h1>123</h1>
+        <Article fullView {...article} />
     )
 }
 
 
-const mapStateToProps = ({article}) => {
+const mapStateToProps = ({ article: {article, loading, err}}) => {
     return {
-        article
+        article,
+        loading,
+        err
     }
 }
 
@@ -28,4 +38,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default withBlogService(connect(mapStateToProps, mapDispatchToProps)(ArticlePage))
+export default connect(mapStateToProps, mapDispatchToProps)(ArticlePage)

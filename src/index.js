@@ -1,26 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
-import store from './store'
-import App from './components/app'
-import ErrorBoundary from './components/errorBoundary'
-import BlogService from './services/blogService'
-import { BlogServiceProvider } from './components/blogServiceContext'
-import './index.css'
-
-const blogService = new BlogService()
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import store from './store';
+import App from './components/app';
+import ErrorBoundary from './components/errorBoundary';
+import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
     <ErrorBoundary>
-      <BlogServiceProvider value={blogService}>
-        <Router>
-          <App />
-        </Router>
-      </BlogServiceProvider>
+      <Router>
+        <App />
+      </Router>
     </ErrorBoundary>
   </Provider>,
   document.getElementById('root')
 );
-

@@ -1,0 +1,57 @@
+.wrapper{
+    margin-left: auto;
+    font-size: 14px;
+    font-family: "Inter";
+    position: relative;
+}
+.delete{
+    padding: 6px 17px 5.1px 17px;
+    border: 1px solid rgba(245, 34, 45, 1);
+    color: rgba(245, 34, 45, 1);
+    border-radius: 4px;
+}
+.edit{
+    padding: 6px 19px 5.1px 19px;
+    border: 1px solid rgba(82, 196, 26, 1);
+    color: rgba(82, 196, 26, 1);
+    margin-left: 12px;
+    border-radius: 4px;
+}
+.confirmWrapper{
+    position: absolute;
+    top: 0;
+    left: 80px;
+    padding: 12px 16px;
+    background-color: white;
+    width: 240px;
+    display: flex;
+    font-family: 'Roboto';
+    flex-wrap: wrap;
+    font-size: 14px;
+    box-shadow: (0px 4px 12px rgba(0, 0, 0, 0.15));
+}
+.confirmTxt{
+    padding-left: 24px;
+}
+.confirmTxt::before{
+    content: '';
+    position: absolute;
+    left: 16px;
+    width: 14px;
+    height: 14px;
+    background-image: url(../../image/attention.svg);
+}
+.confirmBtn{
+    margin-left: auto;
+    padding: 1px 8px;
+    border: 1px solid #D9D9D9;
+    color: rgba(89, 89, 89, 1);
+    border-radius: 4px;
+}
+.confirmBtn:hover{
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(24, 144, 255, 1);
+}
+.confirmBtn:last-child{
+    margin-left: 8px;
+}

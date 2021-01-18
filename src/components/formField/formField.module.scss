@@ -1,0 +1,26 @@
+.label{
+    display: flex;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: rgba(38, 38, 38, 1);
+    line-height: 22px;
+    margin-bottom: 2px;
+}
+.input{
+    flex: 0 1 100%;
+    border: 1px solid rgba(217, 217, 217, 1);
+    border-radius: 4px;
+    padding: 10px 12px;
+    background-color: transparent;
+    font-size: 16px;
+    &::placeholder{
+        font-size: 16px;
+    }
+}
+.input_error{
+    border: 1px solid rgba(245, 34, 45, 1);
+}
+.errors{
+    color: rgba(245, 34, 45, 1);
+}

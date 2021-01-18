@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns'
 import { timeZone } from './helper'
 import classes from './userAvatar.module.scss'
+import noAvatarImg from '../../image/noUserAvatar.svg'
 
 const UserAvatar = ({ image, username, createdAt }) => {
-
     return (
         <div className={classes.wrapper}>
             <div className={classes.info}>
                 <p className={classes.login}>{username}</p>
                 {createdAt ? <p className={classes.date}>{format(new Date(createdAt) - timeZone, 'MMMM d, y')}</p> : null } 
             </div>
-            <img className={classes.img} src={image} alt="" />
+            <img className={classes.img} src={image} onError={(e) => e.target.src = noAvatarImg} alt="Avatar" />
         </div>
     )
 }
